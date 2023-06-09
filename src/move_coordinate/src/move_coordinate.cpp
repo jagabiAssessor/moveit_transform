@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
     
     
     
-    std::cout << "\n위치 초기화: R / 좌표 입력: I / Joint 입력: A / 현재 Pose 확인: P / 프로그램 종료: Q" << std::endl;
+    std::cout << "\n위치 초기화: R / 좌표 입력: I / Joint 입력: A / 현재 Pose 확인: P / 현재 RPY 확인: Y / 현재 End Effector link 확인: L / 프로그램 종료: Q" << std::endl;
     
     std::cin.clear();
     std::cin >> c;
@@ -191,7 +191,7 @@ int main(int argc, char *argv[])
       }
     }
 
-    else if (c == 'p' || c == 'P')
+    else if (c == 'p' || c == 'P') // 현재 Pose 확인
     {
       geometry_msgs::msg::PoseStamped p = move_group_interface.getCurrentPose(END_EFFECTER_LINK);
       printf("position x: %0.1lf\n",p.pose.position.x);
@@ -203,7 +203,7 @@ int main(int argc, char *argv[])
       printf("orientation w: %0.1lf\n",p.pose.orientation.w);
     }
 
-    else if (c == 'y' || c == 'Y')
+    else if (c == 'y' || c == 'Y') // 현재 Roll,Pitch,Yaw 값을 확인
     {
       std::vector<double> c_RPY = move_group_interface.getCurrentRPY(END_EFFECTER_LINK);
       for(int i = 0; i<(int)(c_RPY.size());i++)
@@ -213,23 +213,18 @@ int main(int argc, char *argv[])
       
     }
 
-    else if (c == 'l' || c == 'L')
+    else if (c == 'l' || c == 'L') // 현재 End Effector link가 어디 파트인지 확인
     {
       const std::string end = move_group_interface.getEndEffectorLink();
       std::cout << end << std::endl;
     }
 
-    else if (c == 's' || c == 'S')
-    {
-      std::cout << *current_state << std::endl;
-    }
-
-    else if (c == 't' || c == 'T')
-    {
-      const Eigen::Isometry3d& end_effector_state = current_state->getGlobalLinkTransform("panda_link8");
-      RCLCPP_INFO_STREAM(LOGGER, "Translation: \n" << end_effector_state.translation() << "\n");
-      RCLCPP_INFO_STREAM(LOGGER, "Rotation: \n" << end_effector_state.rotation() << "\n");
-    }
+    // else if (c == 't' || c == 'T')
+    // {
+    //   const Eigen::Isometry3d& end_effector_state = current_state->getGlobalLinkTransform("panda_link8");
+    //   RCLCPP_INFO_STREAM(LOGGER, "Translation: \n" << end_effector_state.translation() << "\n");
+    //   RCLCPP_INFO_STREAM(LOGGER, "Rotation: \n" << end_effector_state.rotation() << "\n");
+    // }
 
     else if (c == 'q' || c == 'Q')
     {
