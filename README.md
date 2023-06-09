@@ -13,7 +13,7 @@
 ---
 
 #### 좌표변환 코드 클론 및 빌드
-    git clone https://github.com/JeonB/transform.git
+    git clone https://github.com/jagabi/moveit_transform.git
     cd transform
     colcon build --mixin release
     source ~/transform/install/local_setup.bash
