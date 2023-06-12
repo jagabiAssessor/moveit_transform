@@ -12,13 +12,20 @@
     
 ---
 
+#### colcon mixin 설치
+    pip3 install colcon-mixin
+    colcon mixin add default https://raw.githubusercontent.com/colcon/colcon-mixin-repository/master/index.yaml
+    colcon mixin update default
+       
+---
+
 #### 좌표변환 코드 클론 및 빌드
     git clone https://github.com/jagabi/moveit_transform.git
-    cd transform
+    cd moveit_transform
     colcon build --mixin release
-    source ~/transform/install/local_setup.bash
+    source ~/moveit_transform/install/local_setup.bash
     
-    # 'source ~/transform/install/local_setup.bash'는 터미널1,2 모두 입력해야 합니다.
+    # 'source ~/moveit_transform/install/local_setup.bash'는 터미널1,2 모두 입력해야 합니다.
     # .bashrc 파일에 입력해서 매번 입력하는 번거로움을 피할 수 있습니다. 
     # gedit .bashrc
     
