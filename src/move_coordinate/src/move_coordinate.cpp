@@ -137,19 +137,6 @@ int main(int argc, char *argv[])
           printf("joint[%d] : %0.1lf\n", i, joint_group_positions[i]);
         }
         //현재 Pose의 Position, Orientation을 
-        geometry_msgs::msg::PoseStamped p = move_group_interface.getPoseTarget(END_EFFECTER_LINK);
-        printf("%0.1lf\n",p.pose.position.x);
-        printf("%0.1lf\n",p.pose.position.y);
-        printf("%0.1lf\n",p.pose.position.z);
-        printf("%0.1lf\n",p.pose.orientation.x);
-        printf("%0.1lf\n",p.pose.orientation.y);
-        printf("%0.1lf\n",p.pose.orientation.z);
-        printf("%0.1lf\n",p.pose.orientation.w);
-
-
-        const Eigen::Isometry3d& end_effector_state = current_state->getGlobalLinkTransform("panda_link8");
-        RCLCPP_INFO_STREAM(LOGGER, "Translation: \n" << end_effector_state.translation() << "\n");
-        RCLCPP_INFO_STREAM(LOGGER, "Rotation: \n" << end_effector_state.rotation() << "\n");
         
       }
       else
